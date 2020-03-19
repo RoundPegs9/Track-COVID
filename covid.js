@@ -7,7 +7,7 @@ covid.update_data = () =>
 {
     const process = spawn('python', [
         "-u",
-        "C:/Users/qasim/Desktop/Exigence/COVID-19/CoronaBluetooth/Diagnostics/get_updates.py"
+        "get_updates.py"
         ]);
     process.stdout.on('data',async(data)=>{
         console.log(`data: ${data}`);   
@@ -24,7 +24,7 @@ covid.GitHub_Push = () =>
 {
     const process = spawn('python', [
         "-u",
-        "C:/Users/qasim/Desktop/Exigence/COVID-19/CoronaBluetooth/Diagnostics/github_push.py"
+        "github_push.py"
         ]);
     process.stdout.on('data',async(data)=>{
         console.log(`data: ${data}`);   
