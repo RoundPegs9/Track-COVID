@@ -55,7 +55,7 @@ def main():
     case = collections.OrderedDict(sorted(case.items()))
 
     raw_data = {**logistics, **case}
-
+    raw_data = collections.OrderedDict(sorted(raw_data.items()))
     df = pd.read_csv("Confirmed_case.csv")
 
     conts = list(df["Country"])
@@ -68,7 +68,7 @@ def main():
             temp = np.append(zero_fill, label)
             temp = temp[::-1]
             df.loc[curr_count] = temp
-    
+    df = df.sort_values(by=['Country'], inplace=False).reset_index(drop=True)
     df_temp = pd.DataFrame.from_dict(raw_data, orient="index", columns=[TIME]).reset_index()
 
     del df_temp["index"]
