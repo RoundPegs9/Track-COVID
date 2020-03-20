@@ -12,18 +12,19 @@ def graph(dataframe, index):
     plt.ylabel(df.iloc[index,0] + " cases")
     plt.xlabel("10 minute interval count since (3/18/2020 18:53)")
     plt.title(df.iloc[index,0] + " cases over time")
-    plt.savefig("Visualizations/" + df.iloc[index, 0] + ".png")
+    plt.savefig("C:/Users/qasim/Desktop/Exigence/Track-COVID/Track-COVID/Visualizations/" + df.iloc[index, 0] + ".png")
     plt.close()
 
 
     
     
 def main():
-    df = pd.read_csv("Confirmed_case.csv")
+    df = pd.read_csv("C:/Users/qasim/Desktop/Exigence/Track-COVID/Track-COVID/Confirmed_case.csv")
 
     for x in range(df.shape[0]):
         graph(df, x)
-    print("Successfully updated graphs")
+    return ("Successfully updated graphs")
         
 if __name__ == "__main__":
-    main()
+    status = main()
+    print(status)
