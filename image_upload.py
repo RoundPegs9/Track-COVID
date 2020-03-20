@@ -48,8 +48,8 @@ def main():
     files = find_files(file_dir)
 
     br = init()
-    br.find_element_by_id("login_field").send_keys("EMAIL@gmail.com")
-    br.find_element_by_id("password").send_keys("PASSWORD")
+    br.find_element_by_id("login_field").send_keys("TEST@gmail.com")
+    br.find_element_by_id("password").send_keys("TEST")
     button = br.find_element_by_class_name("btn.btn-primary.btn-block")
     button.click()
     br.get(URL_post)
