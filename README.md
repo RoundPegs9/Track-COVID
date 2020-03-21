@@ -15,4 +15,8 @@ Automating the spread of COVID-19 by a 10-minute update crawler
 #### Current U.S Cases
 <img src="./Visualizations/US.png">
 
+#### Current Qatar Cases
+<img src="./Visualizations/Qatar.png">
+
+
 #### Data Source : <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/85320e2ea5424dfaaa75ae62e5c06e61">John Hopkins University</a>
