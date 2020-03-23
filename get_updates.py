@@ -37,6 +37,7 @@ def main():
     TIME = ':'.join(TIME.split(":")[:-1])
     root = br.find_element_by_tag_name("body")
     root.screenshot("C:/Users/qasim/Desktop/Exigence/Track-COVID/Track-COVID/Visualizations/"+ TIME.split(" ")[0] +".png")
+    root.screenshot("C:/Users/qasim/Desktop/Exigence/Track-COVID/Track-COVID/Visualizations/TODAY.png")
 
     TIME = str(datetime.now())
     TIME = ':'.join(TIME.split(":")[:-1])

@@ -31,7 +31,7 @@ def main():
     time.sleep(3)
 
     file_dir = "C:/Users/qasim/Desktop/Exigence/COVID-19/CoronaBluetooth/Diagnostics/Confirmed_case.csv"
-    file_send = br.find_element_by_id("upload-manifest-files-input").send_keys(file_dir)
+    br.find_element_by_id("upload-manifest-files-input").send_keys(file_dir)
 
     time.sleep(3)
     TIME = str(datetime.now())
