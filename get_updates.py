@@ -12,9 +12,10 @@ import random
 from datetime import datetime
 import collections
 
-def init():
-    URL = "https://www.arcgis.com/apps/opsdashboard/index.html#/85320e2ea5424dfaaa75ae62e5c06e61"
+URL_logistics = "https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6"
 
+def init(URL = "https://www.arcgis.com/apps/opsdashboard/index.html#/85320e2ea5424dfaaa75ae62e5c06e61"):
+    
     chrome_options = webdriver.ChromeOptions()
     chrome_options.headless = True
     prefs = {"profile.default_content_setting_values.notifications" : 2}
@@ -29,30 +30,25 @@ def extract_num(string):
     return int(string.replace(",", ""))
 
 def main():
-    br = init()
-    data = br.find_element_by_id("ember21").text.split("\n")[:6]
-    logistics = {"CONFIRMED" : extract_num(data[1]), "DEATHS" : extract_num(data[3]), "RECOVERED" : extract_num(data[5])}
-
-    data = br.find_element_by_id("ember107").click()
+    br = init(URL_logistics)
+    DATA = str(br.find_element_by_tag_name("body").text).split("\n")[1:]
+    logistics = {"CONFIRMED" : extract_num(DATA[1 + DATA.index("Total Confirmed")]), "DEATHS" : extract_num(DATA[1 + DATA.index("Total Deaths")]), "RECOVERED" : extract_num(DATA[1 + DATA.index("Total Recovered")])}
+    TIME = str(datetime.now())
+    TIME = ':'.join(TIME.split(":")[:-1])
+    root = br.find_element_by_tag_name("body")
+    root.screenshot("Visualizations/"+ TIME.split(" ")[0] +".png")
 
     TIME = str(datetime.now())
     TIME = ':'.join(TIME.split(":")[:-1])
-
-    root = br.find_element_by_id("ember60")
-
-    br.find_element_by_id("ember66").screenshot("Images/"+ TIME.split(" ")[0] +".png")
-
-    data = root.text.split("\n")[1:]
-
+    data = DATA[1+DATA.index("Confirmed Cases by Country/Region/Sovereignty"):DATA.index("Last Updated at (M/D/YYYY)")]
     case = {}
-
     for x in data:
         x = x.split(" ")
         country = " ".join(x[1:]).replace("*", "").strip()
         cases = int(x[0].replace(",",""))
         case[country] = cases
-
     case = collections.OrderedDict(sorted(case.items()))
+
 
     raw_data = {**logistics, **case}
     raw_data = collections.OrderedDict(sorted(raw_data.items()))
@@ -68,6 +64,8 @@ def main():
             temp = np.append(zero_fill, label)
             temp = temp[::-1]
             df.loc[curr_count] = temp
+            curr_count+=1
+            
     df = df.sort_values(by=['Country'], inplace=False).reset_index(drop=True)
 
     for i, label in enumerate(conts):
