@@ -36,7 +36,7 @@ def main():
     TIME = str(datetime.now())
     TIME = ':'.join(TIME.split(":")[:-1])
     root = br.find_element_by_tag_name("body")
-    root.screenshot("Visualizations/"+ TIME.split(" ")[0] +".png")
+    root.screenshot("C:/Users/qasim/Desktop/Exigence/Track-COVID/Track-COVID/Visualizations/"+ TIME.split(" ")[0] +".png")
 
     TIME = str(datetime.now())
     TIME = ':'.join(TIME.split(":")[:-1])
@@ -52,7 +52,7 @@ def main():
 
     raw_data = {**logistics, **case}
     raw_data = collections.OrderedDict(sorted(raw_data.items()))
-    df = pd.read_csv("Confirmed_case.csv")
+    df = pd.read_csv("C:/Users/qasim/Desktop/Exigence/Track-COVID/Track-COVID/Confirmed_case.csv")
 
     conts = list(df["Country"])
     curr_count = len(df["Country"])
@@ -96,7 +96,7 @@ def main():
 
         del df_copy
     
-    df_cum.to_csv("Confirmed_case.csv", index=False)
+    df_cum.to_csv("C:/Users/qasim/Desktop/Exigence/Track-COVID/Track-COVID/Confirmed_case.csv", index=False)
     
     return {"CODE" : "200", "Total Confirmed Cases" : logistics["CONFIRMED"], "TIME" : TIME}
 
