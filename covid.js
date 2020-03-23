@@ -7,7 +7,7 @@ covid.update_data = () =>
 {
     const process = spawn('python', [
         "-u",
-        "get_updates.py"
+        "C:/Users/qasim/Desktop/Exigence/COVID-19/CoronaBluetooth/Diagnostics/get_updates.py"
         ]);
     process.stdout.on('data',async(data)=>{
         console.log(`data: ${data}`);   
@@ -24,7 +24,41 @@ covid.GitHub_Push = () =>
 {
     const process = spawn('python', [
         "-u",
-        "github_push.py"
+        "C:/Users/qasim/Desktop/Exigence/COVID-19/CoronaBluetooth/Diagnostics/github_push.py"
+        ]);
+    process.stdout.on('data',async(data)=>{
+        console.log(`data: ${data}`);   
+    });
+    process.stderr.on('error', async(data) => {
+        console.log(`error: ${data}`);
+    });
+    process.stderr.on('close', async() => {
+        console.log("Closed");
+    });
+}
+
+covid.Image_Update = () =>
+{
+    const process = spawn('python', [
+        "-u",
+        "C:/Users/qasim/Desktop/Exigence/Track-COVID/Track-COVID/visual.py"
+        ]);
+    process.stdout.on('data',async(data)=>{
+        console.log(`data: ${data}`);   
+    });
+    process.stderr.on('error', async(data) => {
+        console.log(`error: ${data}`);
+    });
+    process.stderr.on('close', async() => {
+        console.log("Closed");
+    });
+}
+
+covid.GitHub_Image_Upload = () =>
+{
+    const process = spawn('python', [
+        "-u",
+        "C:/Users/qasim/Desktop/Exigence/Track-COVID/Track-COVID/image_upload.py"
         ]);
     process.stdout.on('data',async(data)=>{
         console.log(`data: ${data}`);   
